@@ -1,10 +1,10 @@
 //prints tasks
 export class Task {
 
-  constructor(...args) {
+  constructor(...sections) {
 
-    for (let i = 0 ; i < args.length ;  i++){
-      console.log(args[i]);
+    for (let i = 0 ; i < sections.length ;  i++){
+      console.log(sections[i]);
     }
 
   }
