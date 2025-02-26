@@ -12,7 +12,9 @@ export class DueDate {
 
   set dueDate(value) {
 
-    this._dueDate = value;
+    let newValue = ["dueDate", value]
+
+    this._dueDate = newValue;
   }
 
 } 

@@ -6,15 +6,19 @@ export class Title {
 
   };
 
+  //return statement
   get title() {
     return this._title;
   };
 
+  // format given value into key/value array([title, "inputed value"] )
   set title(value) {
-    //capitalises imputed title
-    value = value.toUpperCase();
 
-    this._title = value;
+    let newValue = ["title", value];
+
+    // value has to 
+
+    this._title = newValue;
   }
 
 } 

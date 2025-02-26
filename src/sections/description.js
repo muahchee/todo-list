@@ -12,7 +12,9 @@ export class Description {
 
   set description(value) {
 
-    this._description = value;
-  }
+    let newValue = ["description", value]
 
+    this._description = newValue;
+  }
+  
 } 
