@@ -1,3 +1,5 @@
+// create a key/value array for inputed title
+
 export class Title {
 
   constructor(title) {

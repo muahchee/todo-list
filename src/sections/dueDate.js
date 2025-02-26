@@ -1,3 +1,5 @@
+// create a key/value array for inputed dueDate
+
 export class DueDate {
 
   constructor(dueDate) {

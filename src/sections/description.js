@@ -1,3 +1,5 @@
+// create a key/value array for inputed description
+
 export class Description {
 
   constructor(description) {
