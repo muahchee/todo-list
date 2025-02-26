@@ -5,8 +5,7 @@ import { Description } from "./sections/description.js";
 import { DueDate } from "./sections/dueDate.js";
 
 
-//ask for task object
-  //ask section for key/value pair
+//the user (for now)
 
 const task2 = new Task
   (
