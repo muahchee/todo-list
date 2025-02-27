@@ -7,6 +7,10 @@ export const TaskList = class {
 
   };
 
+  sortList() {
+
+    this.list.sort( ( a, b ) => b.priority - a.priority)
+  }
 
 
 }
