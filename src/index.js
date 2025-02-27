@@ -1,20 +1,21 @@
-
+//--creation of task and list--
 import { createTask } from "./createTask.js";
 import { addTask } from "./addTask.js";
 import { TaskList } from "./taskList.js";
 
-
+//--editing the task--
 import { prioritise, unprioritise } from "./editTask/changePriority.js";
 import { checkOff, uncheck } from "./editTask/changeCheck.js";
+import { deleteTask } from "./editTask/deleteTask.js";
 
-
+//--creating sections of the task--
 import { Title } from "./sections/title.js";
 import { Description } from "./sections/description.js";
 import { DueDate } from "./sections/dueDate.js";
 import { Checklist } from "./sections/checklist.js";
 import { Notes } from "./sections/notes.js";
 
-//the user (for now)
+//--the user--
   //wants to create a task
   //wants to see the currently list of tasks
 
@@ -22,7 +23,7 @@ const taskContainer = new TaskList()
 const taskList = taskContainer.list;
 
 
-//create task
+//--creating the tasks--
 addTask( taskList, 
   createTask
   (
@@ -56,7 +57,9 @@ addTask( taskList,
 
 console.log(taskList);
 
+console.log (deleteTask(taskList, taskList[2]))
 
+console.log(taskList);
 
 
 
