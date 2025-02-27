@@ -14,6 +14,13 @@ export function createTask (...sections){
     taskObject[sections[i][0]] = sections[i][1];
 
   };    
+
+  //set initial priority to false
+
+  let priority = false;
+
+  taskObject["priority"] = priority;
+
   return taskObject;
 }
 

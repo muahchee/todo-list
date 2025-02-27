@@ -1,4 +1,4 @@
-// sorts an array by priority
+// create a list of tasks sorted by priority
 export const TaskList = class {
 
   constructor() {
