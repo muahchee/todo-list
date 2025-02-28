@@ -17,6 +17,8 @@ import { DueDate } from "./sections/dueDate.js";
 import { Checklist } from "./sections/checklist.js";
 import { Notes } from "./sections/notes.js";
 
+import { TaskFormDOM } from "./dom/taskForm.js";
+
 //--the user--
   //wants to create a task
   //wants to see the currently list of tasks
@@ -36,7 +38,7 @@ taskContainer1.addTask(
   (
     new Title (" - Ink Zine illustration - ").title,
     new Description ("almost finished!").description,
-    new DueDate ("2001/03/06").dueDate,
+    new DueDate ("2025/03/06").dueDate,
     new Checklist ("sketch", "ink", "colour").checklist,
   ) );
 
@@ -60,36 +62,14 @@ taskContainer1.addTask(
   ) );
 
 
+const taskDom = new TaskFormDOM();
+const mainContainer = document.querySelector(".full-wrapper")
 
+mainContainer.appendChild(taskDom.form)
 
 console.log(taskList1);
 
-// console.log (deleteTask(taskList1, taskList1[2]))
-
-console.log(taskList1);
 
 console.log(projectList);
 
-// import { formatRelative, subDays } from "date-fns";
-
-// console.log(formatRelative(new Date("2001/04/05"), new Date()))
-
-import { result } from "./test.js";
-
-console.log(result)
-
-
-
-// console.log(checkOff(taskList1[0], "sketch"));
-
-// console.log(taskList1);
-
-
-// console.log(taskContainer.sortList());
-
-// console.log(prioritise(taskList1[1]));
-
-// console.log(taskContainer.sortList());
-
-// console.log(taskList1);
 
