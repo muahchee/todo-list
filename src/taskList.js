@@ -7,6 +7,15 @@ export const TaskList = class {
 
   };
 
+  // adds a task to a list
+  addTask(task) {
+
+  this.list.push(task);
+
+  console.log ("added task to tasklist!!")
+
+}  
+
   sortList() {
 
     this.list.sort( ( a, b ) => b.priority - a.priority)

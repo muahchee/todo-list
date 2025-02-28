@@ -1,7 +1,9 @@
+
+
 //--creation of task and list--
 import { createTask } from "./createTask.js";
-import { addTask } from "./addTask.js";
 import { TaskList } from "./taskList.js";
+import { ProjectList } from "./projectList.js";
 
 //--editing the task--
 import { prioritise, unprioritise } from "./editTask/changePriority.js";
@@ -19,60 +21,75 @@ import { Notes } from "./sections/notes.js";
   //wants to create a task
   //wants to see the currently list of tasks
 
-const taskContainer = new TaskList()
-const taskList = taskContainer.list;
+  //create project (only one will exist)
+const projectContainer = new ProjectList();
+const projectList = projectContainer.list;
 
+const taskContainer1 = new TaskList()
+const taskList1 = taskContainer1.list;
+
+projectContainer.addTask(taskList1);
 
 //--creating the tasks--
-addTask( taskList, 
+taskContainer1.addTask(
   createTask
   (
     new Title (" - Ink Zine illustration - ").title,
     new Description ("almost finished!").description,
-    new DueDate ("17/6/s24").dueDate,
+    new DueDate ("2001/03/06").dueDate,
     new Checklist ("sketch", "ink", "colour").checklist,
   ) );
 
-addTask( taskList, 
+taskContainer1.addTask(
   createTask
   (
     new Title (" - Second Title- ").title,
     new Description ("POODR").description,
-    new DueDate ("17/6/s24").dueDate,
+    new DueDate ("2024/09/13").dueDate,
     new Notes ("better get it done soon").notes
   ) );
 
 
-addTask( taskList, 
+taskContainer1.addTask(
   createTask
   (
     new Title (" - Third- ").title,
     new Description ("oatchy").description,
-    new DueDate ("999/6/14").dueDate,
+    new DueDate ("2014/05/06").dueDate,
     new Notes ("dandori today and dandori tomorrow").notes
   ) );
 
 
 
 
-console.log(taskList);
+console.log(taskList1);
 
-console.log (deleteTask(taskList, taskList[2]))
+// console.log (deleteTask(taskList1, taskList1[2]))
 
-console.log(taskList);
+console.log(taskList1);
+
+console.log(projectList);
+
+// import { formatRelative, subDays } from "date-fns";
+
+// console.log(formatRelative(new Date("2001/04/05"), new Date()))
+
+import { result } from "./test.js";
+
+console.log(result)
 
 
 
-// console.log(checkOff(taskList[0], "sketch"));
+// console.log(checkOff(taskList1[0], "sketch"));
 
-// console.log(taskList);
+// console.log(taskList1);
 
 
 // console.log(taskContainer.sortList());
 
-// console.log(prioritise(taskList[1]));
+// console.log(prioritise(taskList1[1]));
 
 // console.log(taskContainer.sortList());
 
-// console.log(taskList);
+// console.log(taskList1);
 
