@@ -1,0 +1,127 @@
+@font-face {
+  font-family: pikmin;
+  src: url(./pikminneue.otf);
+}
+/* css reset */
+/* 1. Use a more-intuitive box-sizing model */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+  margin: 0;
+}
+
+body {
+  /* 3. Add accessible line-height */
+  line-height: 1.6;
+  /* 4. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+}
+
+
+/* 6. Inherit fonts for form controls */
+input, button, textarea, select {
+  font: inherit;
+}
+
+button{
+  border: none;
+}
+
+/* 7. Avoid text overflows */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/* 8. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+/*
+  9. Create a root stacking context
+*/
+#root, #__next {
+  isolation: isolate;
+}
+
+.bold{
+  font-weight: bold;
+}
+
+.italic{
+  font-style: italic;
+}
+
+/* main css */
+
+*{
+--darkest: #0c2f45;
+--dark: #ff353f;
+--light: #60d0f5;
+--lighter: #d8ffff;
+--lightest: #f9ffce;
+--lightest2: #e4bc2f;
+
+--light-shadow: #60d0f570;
+}
+
+body{
+
+  font-family: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
+  font-size: 2rem;
+
+}
+
+.full-wrapper{
+
+  height: 100vh;
+
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 50px 1fr;
+  grid-template-areas: 
+    "header header"
+    "sidebar main";
+
+}
+
+header{
+
+  /* position: sticky;
+  top: 0; */
+
+  background-color: var(--dark);
+
+  grid-area: header;
+
+}
+
+.side-bar{
+
+  height: 100%;
+  /* position: sticky;
+  left: 0; */
+
+  background-color: var(--lightest2);
+
+  grid-area: sidebar;
+
+}
+
+.main-container{
+
+  height: 100%;
+
+  background-color: var(--darkest);
+  
+  grid-area: main;
+
+  overflow-y: scroll;
+
+}

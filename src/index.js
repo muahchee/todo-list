@@ -1,23 +1,23 @@
-
+import "./styles.css";
 
 //--creation of task and list--
-import { createTask } from "./createTask.js";
-import { TaskList } from "./taskList.js";
-import { ProjectList } from "./projectList.js";
+import { createTask } from "./scripts/createTask.js";
+import { TaskList } from "./scripts/taskList.js";
+import { ProjectList } from "./scripts/projectList.js";
 
 //--editing the task--
-import { prioritise, unprioritise } from "./editTask/changePriority.js";
-import { checkOff, uncheck } from "./editTask/changeCheck.js";
-import { deleteTask } from "./editTask/deleteTask.js";
+import { prioritise, unprioritise } from "./scripts/editTask/changePriority.js";
+import { checkOff, uncheck } from "./scripts/editTask/changeCheck.js";
+import { deleteTask } from "./scripts/editTask/deleteTask.js";
 
 //--creating sections of the task--
-import { Title } from "./sections/title.js";
-import { Description } from "./sections/description.js";
-import { DueDate } from "./sections/dueDate.js";
-import { Checklist } from "./sections/checklist.js";
-import { Notes } from "./sections/notes.js";
+import { Title } from "./scripts/sections/title.js";
+import { Description } from "./scripts/sections/description.js";
+import { DueDate } from "./scripts/sections/dueDate.js";
+import { Checklist } from "./scripts/sections/checklist.js";
+import { Notes } from "./scripts/sections/notes.js";
 
-import { TaskFormDOM } from "./dom/taskForm.js";
+import { TaskFormDOM } from "./scripts/dom/taskForm.js";
 
 //--the user--
   //wants to create a task
@@ -65,11 +65,11 @@ taskContainer1.addTask(
 const taskDom = new TaskFormDOM();
 const mainContainer = document.querySelector(".full-wrapper")
 
-mainContainer.appendChild(taskDom.form)
+// mainContainer.appendChild(taskDom.form)
 
-console.log(taskList1);
+// console.log(taskList1);
 
 
-console.log(projectList);
+// console.log(projectList);
 
 
