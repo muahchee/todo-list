@@ -43,26 +43,45 @@ export class newTaskForm {
     this.descriptionInput.setAttribute("id", "description");
     this.descriptionInput.setAttribute("name", "description");
 
-    this.addDescriptionBtn = document.createElement("button");
-    this.addDescriptionBtn.setAttribute("class", "add-description");
 
     this.checkboxesSection = document.createElement("div");
-
-    this.checkboxes = document.createElement("p");
     this.checkboxesLabel = document.createElement("label");
+    this.checkboxesLabel.textContent = "Checkboxes?"
     this.checkboxesInput = document.createElement("input");
+    this.checkboxesInput.setAttribute("name", "checkbox1")
+
+    this.addCheckboxBtn = document.createElement("button");
+    this.addCheckboxBtn.setAttribute("class", "add-checkbox");
+    this.addCheckboxBtn.setAttribute("type", "button");
+    this.addCheckboxBtn.textContent = "add another checkbox"
 
     this.addTaskBtn = document.createElement("button");
     this.addTaskBtn.setAttribute("class", "add-task")
+    this.addTaskBtn.setAttribute("type", "submit")
     this.addTaskBtn.textContent = "Add Task"
     
 
  
   }
 
+  _addAnotherCheckbox(checkboxesSection, addCheckboxBtn) {
+    
+    let checkboxCount = 1;
+
+    return function() {
+      checkboxCount++;
+
+      let newCheckboxInput = document.createElement("input");
+      newCheckboxInput.setAttribute("name", `checkbox${checkboxCount}`);
+
+      checkboxesSection.insertBefore(newCheckboxInput, addCheckboxBtn);
+
+    } 
+  }
+
   createNewTaskForm() {
 
-    dialogClose(this.addTaskBtn, this.dialog)
+    this.addCheckboxBtn.addEventListener("click", this._addAnotherCheckbox(this.checkboxesSection, this.addCheckboxBtn))
 
     //append child
 
@@ -85,9 +104,10 @@ export class newTaskForm {
     this.description.appendChild(this.descriptionLabel);
     this.description.appendChild(this.descriptionInput);
 
-    this.checkboxesSection.appendChild(this.checkboxes);
-    this.checkboxes.appendChild(this.checkboxesLabel);
-    this.checkboxes.appendChild(this.checkboxesInput);
+    this.checkboxesSection.appendChild(this.checkboxesLabel);
+    this.checkboxesSection.appendChild(this.checkboxesInput)
+    this.checkboxesSection.appendChild(this.addCheckboxBtn);
+
 
     return this.dialog
     
