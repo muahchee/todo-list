@@ -35,15 +35,6 @@ export class TaskFormDOM {
     this.descriptionInput.setAttribute("id", "description");
     this.descriptionInput.setAttribute("name", "description");
 
-    this.notesSection = document.createElement("p");
-    this.notesLabel = document.createElement("label");
-    this.notesLabel.setAttribute("for", "notes");
-    this.notesLabel.textContent = "Notes: ";
-    this.notesInput = document.createElement("input");
-    this.notesInput.setAttribute("type", "text");
-    this.notesInput.setAttribute("id", "notes");
-    this.notesInput.setAttribute("name", "notes");
-
     this.checkboxesSection = document.createElement("p");
     this.checkboxesLabel = document.createElement("label");
     this.checkboxesInput = document.createElement("input");

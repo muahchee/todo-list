@@ -141,10 +141,13 @@ header p{
   color: var(--lighter);
 }
 
-.side-bar a{
+.side-bar .back{
 
   color: var(--lighter);
   margin-top: auto ;
+  background: none;
+  border: none;
+  cursor: pointer;;
 
 }
 
