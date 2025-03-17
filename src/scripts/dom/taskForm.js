@@ -64,6 +64,7 @@ export class newTaskForm {
  
   }
 
+  //add another checkbox field under first one
   _addAnotherCheckbox(checkboxesSection, addCheckboxBtn) {
     
     let checkboxCount = 1;
