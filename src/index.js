@@ -6,7 +6,6 @@ import { TaskScreen } from "./scripts/dom/taskScreen.js";
 //--creation of task and list--
 import { createTask } from "./scripts/createTask.js";
 import { TaskList } from "./scripts/taskList.js";
-import { ProjectList } from "./scripts/projectList.js";
 
 //--editing the task--
 import { prioritise, unprioritise } from "./scripts/editTask/changePriority.js";

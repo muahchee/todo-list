@@ -1,5 +1,8 @@
 // task view screen (probably just the side bar)
 
+import { dialogOpen } from "./dialogState.js";
+import { newTaskForm } from "./taskForm.js";
+
 export class TaskScreen {
 
   constructor(taskListName) {
@@ -27,6 +30,8 @@ export class TaskScreen {
     while(this.sideBar.firstChild){
       this.sideBar.removeChild(this.sideBar.lastChild);
     }
+
+    dialogOpen(this.newTaskBtn, new newTaskForm().createNewTaskForm())
 
     this.sideBar.appendChild(this.h2);
     this.sideBar.appendChild(this.newTaskBtn);
