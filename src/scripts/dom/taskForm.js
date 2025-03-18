@@ -12,9 +12,9 @@ export class newTaskForm {
 
     this.dialog = document.createElement("dialog");
 
-    this.dialogWrapper = document.createElement("form");
-    this.dialogWrapper.setAttribute("class", "dialog-wrapper");
-    this.dialogWrapper.setAttribute("method", "dialog");
+    this.form = document.createElement("form");
+    this.form.setAttribute("class", "dialog-wrapper");
+    this.form.setAttribute("method", "dialog");
 
     this.title = document.createElement("p");
     this.titleLabel = document.createElement("label");
@@ -84,17 +84,29 @@ export class newTaskForm {
 
     this.addCheckboxBtn.addEventListener("click", this._addAnotherCheckbox(this.checkboxesSection, this.addCheckboxBtn))
 
+    this.form.addEventListener("submit", () => {
+      
+      //reset form
+      while(this.checkboxesSection.children.length > 2) {
+        this.checkboxesSection.removeChild(this.checkboxesSection.lastChild);
+      };
+      this.checkboxesSection.appendChild(this.addCheckboxBtn);
+      this.form.reset();
+
+      
+    })
+
     //append child
 
     this.fullWrapper.appendChild(this.dialog);
 
-    this.dialog.appendChild(this.dialogWrapper);
+    this.dialog.appendChild(this.form);
 
-    this.dialogWrapper.appendChild(this.title);
-    this.dialogWrapper.appendChild(this.dueDate);
-    this.dialogWrapper.appendChild(this.description);
-    this.dialogWrapper.appendChild(this.checkboxesSection);
-    this.dialogWrapper.appendChild(this.addTaskBtn)
+    this.form.appendChild(this.title);
+    this.form.appendChild(this.dueDate);
+    this.form.appendChild(this.description);
+    this.form.appendChild(this.checkboxesSection);
+    this.form.appendChild(this.addTaskBtn)
 
     this.title.appendChild(this.titleLabel);
     this.title.appendChild(this.titleInput);
