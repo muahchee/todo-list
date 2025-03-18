@@ -27,12 +27,12 @@ export class newTaskForm {
 
     this.dueDate = document.createElement("p");
     this.dueDateLabel = document.createElement("label");
-    this.dueDateLabel.setAttribute("for", "due-date");
+    this.dueDateLabel.setAttribute("for", "dueDate");
     this.dueDateLabel.textContent = "Due Date: ";
     this.dueDateInput = document.createElement("input");
     this.dueDateInput.setAttribute("type", "date");
-    this.dueDateInput.setAttribute("id", "due-date");
-    this.dueDateInput.setAttribute("name", "due-date");
+    this.dueDateInput.setAttribute("id", "dueDate");
+    this.dueDateInput.setAttribute("name", "dueDate");
 
     this.description = document.createElement("p");
     this.descriptionLabel = document.createElement("label");
@@ -114,10 +114,9 @@ export class newTaskForm {
 
       const formData = new FormData(this.form)
 
-      const formObject = new TaskCreatorDOM(formData).createTaskDOM();
+      new TaskCreatorDOM(formData).createTaskDOM();
 
       console.log(formData)
-      console.log(formObject);
       
       //reset form
       while(this.checkboxesSection.children.length > 2) {
