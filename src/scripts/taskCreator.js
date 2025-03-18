@@ -7,6 +7,7 @@ export class TaskCreator{
 
     this.formData = formData;
 
+    //can be used to store in storage
     this.taskObject = new FormProcessor(formData).processForm();
   }
 
