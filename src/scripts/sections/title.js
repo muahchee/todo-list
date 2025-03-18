@@ -10,17 +10,17 @@ export class Title {
 
   //return statement
   get title() {
+
+
     return this._title;
   };
 
-  // format given value into key/value array([title, "inputed value"] )
   set title(value) {
 
-    let newValue = ["title", value];
+    let titleDOM = document.createElement("h2");
+    titleDOM.textContent = this.title
 
-    // value has to 
-
-    this._title = newValue;
+    this._title = titleDOM;
   }
 
 } 

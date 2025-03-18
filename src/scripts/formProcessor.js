@@ -1,5 +1,5 @@
 
-//outputs and object with key/value pairs, ignore any fields thats empty
+//outputs and object with key/value pairs, ignore any fields that are empty
 
 export class FormProcessor {
 

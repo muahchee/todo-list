@@ -1,7 +1,7 @@
 
 //responsibility - collect user INPUT for sections
 
-import { TaskCreatorDOM } from "./taskCreatorDOM.js";
+import { TaskCreator } from "../taskCreator.js";
 
 //include inputs for each section (title, description etc)
 // also an "add task" button that invokes addtask() fo the current tasklist
@@ -114,7 +114,7 @@ export class newTaskForm {
 
       const formData = new FormData(this.form)
 
-      new TaskCreatorDOM(formData).createTaskDOM();
+      new TaskCreator(formData).createTask();
 
       console.log(formData)
       
