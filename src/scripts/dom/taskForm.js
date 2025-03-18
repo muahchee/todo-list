@@ -1,7 +1,7 @@
 
 //responsibility - collect user INPUT for sections
 
-import { dialogClose } from "./dialogState";
+import { TaskCreatorDOM } from "./taskCreatorDOM.js";
 
 //include inputs for each section (title, description etc)
 // also an "add task" button that invokes addtask() fo the current tasklist
@@ -59,42 +59,27 @@ export class newTaskForm {
     this.addTaskBtn.setAttribute("class", "add-task")
     this.addTaskBtn.setAttribute("type", "submit")
     this.addTaskBtn.textContent = "Add Task"
-    
-
- 
   }
 
   //add another checkbox field under first one
   _addAnotherCheckbox(checkboxesSection, addCheckboxBtn) {
-    
+
     let checkboxCount = 1;
 
-    return function() {
+      return function () {
+
       checkboxCount++;
+
+      console.log(this.checkboxCount)
 
       let newCheckboxInput = document.createElement("input");
       newCheckboxInput.setAttribute("name", `checkbox${checkboxCount}`);
 
-      checkboxesSection.insertBefore(newCheckboxInput, addCheckboxBtn);
+      checkboxesSection.insertBefore(newCheckboxInput, addCheckboxBtn);}
 
-    } 
   }
 
   createNewTaskForm() {
-
-    this.addCheckboxBtn.addEventListener("click", this._addAnotherCheckbox(this.checkboxesSection, this.addCheckboxBtn))
-
-    this.form.addEventListener("submit", () => {
-      
-      //reset form
-      while(this.checkboxesSection.children.length > 2) {
-        this.checkboxesSection.removeChild(this.checkboxesSection.lastChild);
-      };
-      this.checkboxesSection.appendChild(this.addCheckboxBtn);
-      this.form.reset();
-
-      
-    })
 
     //append child
 
@@ -120,6 +105,27 @@ export class newTaskForm {
     this.checkboxesSection.appendChild(this.checkboxesLabel);
     this.checkboxesSection.appendChild(this.checkboxesInput)
     this.checkboxesSection.appendChild(this.addCheckboxBtn);
+
+    //event listener
+
+    this.addCheckboxBtn.addEventListener("click", this._addAnotherCheckbox(this.checkboxesSection, this.addCheckboxBtn))
+
+    this.form.addEventListener("submit", () => {
+
+      const formData = new FormData(this.form)
+
+      const formObject = new TaskCreatorDOM(formData).createTaskDOM();
+
+      console.log(formData)
+      console.log(formObject);
+      
+      //reset form
+      while(this.checkboxesSection.children.length > 2) {
+        this.checkboxesSection.removeChild(this.checkboxesSection.lastChild);
+      };
+      this.checkboxesSection.appendChild(this.addCheckboxBtn);
+      this.form.reset();
+    })
 
 
     return this.dialog
