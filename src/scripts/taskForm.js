@@ -1,7 +1,7 @@
 
 //responsibility - collect user INPUT for sections
 
-import { TaskCreator } from "../taskCreator.js";
+import { TaskCreator } from "./taskCreator.js";
 
 //include inputs for each section (title, description etc)
 // also an "add task" button that invokes addtask() fo the current tasklist

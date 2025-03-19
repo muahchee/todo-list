@@ -1,4 +1,4 @@
-import { TaskDOM } from "./dom/taskDOM.js";
+import { TaskDOM } from "./taskDOM.js";
 import { FormProcessor } from "./formProcessor.js";
 
 export class TaskCreator{

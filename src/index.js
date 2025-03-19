@@ -1,6 +1,6 @@
 import "./styles.css";
 
-import { TaskScreen } from "./scripts/dom/taskScreen.js";
+import { TaskScreen } from "./scripts/taskScreen.js";
 
 //---------------------------------//
 
