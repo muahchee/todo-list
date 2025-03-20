@@ -87,6 +87,9 @@ export class TaskDOM {
     this.optionButtonsContainer.appendChild(this.deleteButton);
 
     this.details.appendChild(this.optionButtonsContainer);
-   }
+
+    return this.uniqueID
+  }
+
 
 }
