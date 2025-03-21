@@ -8,9 +8,7 @@ export class TaskStorage {
     this.uniqueId = uniqueId;
 
     this.taskObject = taskObject;
-
-    //!!!Temporary!!!
-    //key for LS, will be the TaskList id
+    
     this.taskListId = taskListId;
 
   }
