@@ -4,6 +4,7 @@ import { dialogOpen } from "./dialogState.js";
 import { InitialTask } from "./initialTask.js";
 import { TaskListResetter } from "./reset.js";
 import { newTaskForm } from "./taskForm.js";
+import { TaskRestorer } from "./taskRestorer.js";
 
 export class TaskScreen {
 
@@ -44,8 +45,17 @@ export class TaskScreen {
     this.sideBar.appendChild(this.resetCurrentListBtn);
     this.sideBar.appendChild(this.backToMainButton);
 
+    //restores stored tasks
+    new TaskRestorer(this.taskListId).restoreTasks();
+
     //create initial Task
-    new InitialTask(this.taskListId).createInitialTask();
+    const mainContainer = document.querySelector(".main-container");
+
+    if (!mainContainer.firstChild) {
+      new InitialTask(this.taskListId).createInitialTask();
+    }
+
+    console.log(localStorage.getItem(this.taskListId))
 
   }
 
