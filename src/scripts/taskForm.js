@@ -116,7 +116,7 @@ export class newTaskForm {
 
       const formData = new FormData(this.form)
 
-      new TaskCreator(taskListId, formData).createTask();
+      new TaskCreator(this.taskListId, formData).createTask();
       
       //reset form
       while(this.checkboxesSection.children.length > 2) {

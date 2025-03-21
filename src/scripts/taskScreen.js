@@ -2,7 +2,7 @@
 
 import { dialogOpen } from "./dialogState.js";
 import { InitialTask } from "./initialTask.js";
-import { TaskCreator } from "./taskCreator.js";
+import { TaskListResetter } from "./reset.js";
 import { newTaskForm } from "./taskForm.js";
 
 export class TaskScreen {
@@ -36,6 +36,8 @@ export class TaskScreen {
     }
 
     dialogOpen(this.newTaskBtn, new newTaskForm(this.taskListId).createNewTaskForm())
+
+    new TaskListResetter(this.taskListId, this.resetCurrentListBtn).addResetListener();
 
     this.sideBar.appendChild(this.h2);
     this.sideBar.appendChild(this.newTaskBtn);

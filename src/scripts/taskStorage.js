@@ -13,6 +13,12 @@ export class TaskStorage {
 
   }
 
+  clearTaskList() {
+
+    localStorage.setItem(this.taskListId, JSON.stringify([]))
+
+  }
+
   storeTask() {
 
     //add a unique id property to each task, so I can target a particular one when editing and entry
