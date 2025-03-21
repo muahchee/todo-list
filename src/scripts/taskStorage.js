@@ -3,7 +3,7 @@
 
 export class TaskStorage {
 
-  constructor(uniqueId, taskObject) {
+  constructor(taskListId, uniqueId, taskObject) {
 
     this.uniqueId = uniqueId;
 
@@ -11,7 +11,7 @@ export class TaskStorage {
 
     //!!!Temporary!!!
     //key for LS, will be the TaskList id
-    this.taskListID = "temporary";
+    this.taskListId = taskListId;
 
   }
 
@@ -20,11 +20,11 @@ export class TaskStorage {
     //add a unique id property to each task, so I can target a particular one when editing and entry
     this.taskObject["uniqueId"] = this.uniqueId
 
-    const taskListArr = JSON.parse(localStorage.getItem(this.taskListID)) || []
+    const taskListArr = JSON.parse(localStorage.getItem(this.taskListId)) || []
 
     taskListArr.push(this.taskObject)
 
-    localStorage.setItem(this.taskListID, JSON.stringify(taskListArr))
+    localStorage.setItem(this.taskListId, JSON.stringify(taskListArr))
 
   }
 

@@ -6,7 +6,9 @@ import { TaskCreator } from "./taskCreator.js";
 //include inputs for each section (title, description etc)
 // also an "add task" button that invokes addtask() fo the current tasklist
 export class newTaskForm {
-  constructor(){
+  constructor(taskListId){
+
+    this.taskListId = taskListId;
 
     this.fullWrapper = document.querySelector(".full-wrapper");
 
@@ -114,7 +116,7 @@ export class newTaskForm {
 
       const formData = new FormData(this.form)
 
-      new TaskCreator(formData).createTask();
+      new TaskCreator(taskListId, formData).createTask();
       
       //reset form
       while(this.checkboxesSection.children.length > 2) {
