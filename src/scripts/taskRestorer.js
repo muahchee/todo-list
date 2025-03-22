@@ -16,7 +16,30 @@ export class TaskRestorer {
 
     this.storedTasksArr.forEach((taskObject) => {
 
-      new TaskDOM(taskObject, this.taskListId).createTaskDOM();
+      let taskUniqueId = taskObject["uniqueId"]
+
+      new TaskDOM(taskObject, this.taskListId, taskUniqueId).createTaskDOM();
+
+      const currentTaskDiv = document.querySelector(`#${taskUniqueId}`).parentElement.parentElement;
+
+      const taskListArr = JSON.parse(localStorage.getItem(this.taskListId));
+
+      const currentTaskLS = taskListArr.filter(task => task["uniqueId"] === taskUniqueId)[0];
+
+
+      //restore color according to priority
+
+      const priorityBtn = currentTaskDiv.querySelector(".priority-btn");
+
+      if (currentTaskLS["priority"] === true) {
+
+        currentTaskDiv.style.backgroundColor = "var(--priority)";
+        currentTaskDiv.style.boxShadow = "0px 0px 20px 5px var(--priority-shadow)"
+
+        priorityBtn.textContent = "Unprioritise" 
+
+      }
+
 
     })
 

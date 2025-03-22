@@ -4,12 +4,25 @@ import { v4 as uuidv4 } from "uuid";
 
 export class TaskDOM {
 
-  constructor(taskObject, taskListId) {
+  constructor(taskObject, taskListId, taskUniqueId) {
 
     this.taskListId = taskListId
 
     this.taskObject = taskObject
-    this.taskUniqueId = uuidv4();
+
+    //generate new id if one is not provided, add a random letter at the beginning because cant query select ids that start with numbers
+    this.taskUniqueId = taskUniqueId || this._randomAlphabet() + uuidv4();
+
+  }
+
+  //returns a random letter
+  _randomAlphabet() {
+    
+    const lowercaseAsciiStart = 97;
+    const letterIndex = Math.floor(Math.random() * 26);
+    const letter = String.fromCharCode(lowercaseAsciiStart + letterIndex);
+
+    return letter
 
   }
 
@@ -83,13 +96,16 @@ export class TaskDOM {
     this.optionButtonsContainer.setAttribute("class", "option-buttons");
 
     this.editButton = document.createElement("button");
+    this.editButton.setAttribute("class", "edit-btn");
     this.editButton.textContent = "Edit"
     
     this.priorityButton = document.createElement("button");
     this.priorityButton.textContent = "Prioritise";
+    this.priorityButton.setAttribute("class", "priority-btn");
     new PriorityChanger(this.taskUniqueId, this.taskListId, this.priorityButton).changePriority();
 
     this.deleteButton = document.createElement("button");
+    this.deleteButton.setAttribute("class", "delete-btn");
     this.deleteButton.textContent = "Delete"
 
     this.optionButtonsContainer.appendChild(this.editButton);

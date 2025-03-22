@@ -55,8 +55,6 @@ export class TaskScreen {
       new InitialTask(this.taskListId).createInitialTask();
     }
 
-    console.log(localStorage.getItem(this.taskListId))
-
   }
 
 }
