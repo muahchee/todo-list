@@ -1,11 +1,15 @@
+import { PriorityChanger } from "./priorityChanger.js";
 import { Title, DueDate, Description, Checkbox } from "./section.js";
+import { v4 as uuidv4 } from "uuid";
 
 export class TaskDOM {
 
-  constructor(taskObject) {
+  constructor(taskObject, taskListId) {
+
+    this.taskListId = taskListId
 
     this.taskObject = taskObject
-    this.uniqueID = Symbol("task").toString()
+    this.taskUniqueId = uuidv4();
 
   }
 
@@ -22,10 +26,10 @@ export class TaskDOM {
 
     this.mainCheckbox = document.createElement("input");
     this.mainCheckbox.setAttribute("type", "checkbox");
-    this.mainCheckbox.setAttribute("id", this.uniqueID);
+    this.mainCheckbox.setAttribute("id", this.taskUniqueId);
 
     this.mainLabel = document.createElement("label");
-    this.mainLabel.setAttribute("for", this.uniqueID);
+    this.mainLabel.setAttribute("for", this.taskUniqueId);
 
     this.details = document.createElement("details");
 
@@ -65,7 +69,7 @@ export class TaskDOM {
 
     //loop over each field with "checkbox" in the name
     for (let key in this.taskObject) {
-      if (key.match(/checkbox/)){
+      if (key.match(/^checkbox/)){
 
         this.details.appendChild(new Checkbox
           (this.taskObject[key]).createCheckbox())
@@ -73,22 +77,28 @@ export class TaskDOM {
     }
 
 
-    //option buttons append
+    //option buttons
 
     this.optionButtonsContainer = document.createElement("div");
     this.optionButtonsContainer.setAttribute("class", "option-buttons");
 
     this.editButton = document.createElement("button");
     this.editButton.textContent = "Edit"
+    
+    this.priorityButton = document.createElement("button");
+    this.priorityButton.textContent = "Prioritise";
+    new PriorityChanger(this.taskUniqueId, this.taskListId, this.priorityButton).changePriority();
+
     this.deleteButton = document.createElement("button");
     this.deleteButton.textContent = "Delete"
 
     this.optionButtonsContainer.appendChild(this.editButton);
+    this.optionButtonsContainer.appendChild(this.priorityButton);
     this.optionButtonsContainer.appendChild(this.deleteButton);
 
     this.details.appendChild(this.optionButtonsContainer);
 
-    return this.uniqueID
+    return this.taskUniqueId
   }
 
 

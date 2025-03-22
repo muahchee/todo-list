@@ -4,6 +4,8 @@ export class TaskRestorer {
 
   constructor(taskListId) {
 
+    this.taskListId = taskListId
+
     this.mainContainer = document.querySelector(".main-container");
 
     this.storedTasksArr = JSON.parse(localStorage.getItem(taskListId));
@@ -14,7 +16,7 @@ export class TaskRestorer {
 
     this.storedTasksArr.forEach((taskObject) => {
 
-      new TaskDOM(taskObject).createTaskDOM();
+      new TaskDOM(taskObject, this.taskListId).createTaskDOM();
 
     })
 
