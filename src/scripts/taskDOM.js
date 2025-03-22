@@ -86,8 +86,15 @@ export class TaskDOM {
     for (let key in this.taskObject) {
       if (key.match(/^checkbox/)){
 
-        this.details.appendChild(new Checkbox
-          (this.taskObject[key]).createCheckbox())
+        this.checkboxWrapper = new Checkbox(this.taskObject[key]).createCheckbox()
+
+        this.details.appendChild(this.checkboxWrapper)
+
+        //event listener for line through and storage
+        const checkboxInput = this.checkboxWrapper.querySelector("input");
+
+
+        new CheckboxChanger(this.taskUniqueId, this.taskListId, checkboxInput).changeInternalChecked(key);
       }
     }
 

@@ -71,6 +71,12 @@ export class Checkbox {
 
   };
 
+  _checkboxIdString() {
+
+    return this.checkbox.replace(/\s/g, "-")
+
+  }
+
   createCheckbox() {
 
     let checkboxWrapper = document.createElement("div");
@@ -78,10 +84,10 @@ export class Checkbox {
 
     let checkboxInputDOM = document.createElement("input");
     checkboxInputDOM.setAttribute("type", "checkbox");
-    checkboxInputDOM.setAttribute("id", this.checkbox);
+    checkboxInputDOM.setAttribute("id", this._checkboxIdString());
 
     let checkboxLabelDOM = document.createElement("label");
-    checkboxLabelDOM.setAttribute("for", this.checkbox);
+    checkboxLabelDOM.setAttribute("for", this._checkboxIdString());
     checkboxLabelDOM.textContent = this.checkbox;
 
     checkboxWrapper.appendChild(checkboxInputDOM);

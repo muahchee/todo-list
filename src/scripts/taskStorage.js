@@ -3,11 +3,9 @@
 
 export class TaskStorage {
 
-  constructor(taskListId, uniqueId, taskObject) {
+  constructor(taskListId, uniqueId) {
 
     this.uniqueId = uniqueId;
-
-    this.taskObject = taskObject;
     
     this.taskListId = taskListId;
 
@@ -45,6 +43,34 @@ export class TaskStorage {
 
   }
 
+  changeInternalCheckboxState(key) {
+
+    const taskListArr = JSON.parse(localStorage.getItem(this.taskListId));
+
+    const currentTask = taskListArr.filter(task => task["uniqueId"] === this.uniqueId)[0];
+
+    const currentTaskIndex = taskListArr.indexOf(currentTask);
+
+    if (currentTask[`checked${key}`] === false) {
+
+      currentTask[`checked${key}`] = true;
+
+    } else {
+
+      currentTask[`checked${key}`] = false;
+
+    }
+
+    //replace task with updated one 
+    taskListArr.splice(currentTaskIndex, 1, currentTask);
+
+    localStorage.setItem(this.taskListId, JSON.stringify(taskListArr))
+
+    return currentTask[`checked${key}`];
+
+
+  }
+
   changeStoredTaskPriority() {
 
     const taskListArr = JSON.parse(localStorage.getItem(this.taskListId));
@@ -71,7 +97,9 @@ export class TaskStorage {
 
   }
 
-  storeTask() {
+  storeTask(taskObject) {
+
+    this.taskObject = taskObject
 
     //add a unique id property to each task, so I can target a particular one when editing and entry
     this.taskObject["uniqueId"] = this.uniqueId

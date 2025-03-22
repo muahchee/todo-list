@@ -33,7 +33,7 @@ export class TaskCreator{
 
     const initialTask = new TaskDOM(this.taskObject, this.taskListId).createTaskDOM();
 
-    new TaskStorage(this.taskListId, initialTask, this.taskObject).storeTask();
+    new TaskStorage(this.taskListId, initialTask).storeTask(this.taskObject);
   }
 
   createTask() {
@@ -41,7 +41,7 @@ export class TaskCreator{
     //TaskDom outputs the task's uniqueID, which is now stored in this new Task variable
     const newTask = new TaskDOM(this.taskObject, this.taskListId).createTaskDOM();
 
-    new TaskStorage(this.taskListId, newTask, this.taskObject).storeTask();
+    new TaskStorage(this.taskListId, newTask).storeTask(this.taskObject);
   }
 
 }

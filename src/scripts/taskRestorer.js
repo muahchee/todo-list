@@ -23,6 +23,7 @@ export class TaskRestorer {
       const currentTaskDiv = document.querySelector(`#${taskUniqueId}`).parentElement.parentElement;
 
       const currentTaskLabel = document.querySelector(`#${taskUniqueId}`).parentElement.querySelector("label");
+      const currentTaskInput= document.querySelector(`#${taskUniqueId}`).parentElement.querySelector("input");
 
       const taskListArr = JSON.parse(localStorage.getItem(this.taskListId));
 
@@ -47,6 +48,30 @@ export class TaskRestorer {
       if (currentTaskLS["mainChecked"] === true) {
 
         currentTaskLabel.style.textDecoration = "line-through";
+        currentTaskInput.setAttribute("checked", "true")
+
+      }
+
+      //restore internal checkbox states
+
+      for (let key in currentTaskLS) {
+
+        if (key.match(/^checkbox/)) {
+
+          const currentInternalId = `#${CSS.escape(currentTaskLS[key].replace(/\s/g, "-"))}`
+          const currentInternalInput = currentTaskDiv.querySelector(currentInternalId);
+          const currentInternalLabel = currentTaskDiv.querySelector(currentInternalId).parentElement.querySelector("label");
+          console.log(currentInternalInput)
+
+          if (currentTaskLS[`checked${key}`] === true) {
+
+            currentInternalLabel.style.textDecoration = "line-through";
+            currentInternalInput.setAttribute("checked", true)
+            
+          }
+
+        }
+
 
       }
 

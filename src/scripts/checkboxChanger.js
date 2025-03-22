@@ -2,17 +2,17 @@ import { TaskStorage } from "./taskStorage";
 
 export class CheckboxChanger {
 
-  constructor(taskUniqueId, taskListId, input) {
+  constructor(taskUniqueId, taskListId, checkbox) {
 
     this.taskUniqueId = taskUniqueId;
     this.taskListId = taskListId;
-    this.input = input;
+    this.checkbox = checkbox;
 
   }
 
   changeMainChecked() {
 
-    this.input.addEventListener("click", () => {
+    this.checkbox.addEventListener("click", () => {
 
       const currentTaskLabel = document.querySelector(`#${this.taskUniqueId}`).parentElement.querySelector("label");
 
@@ -30,6 +30,31 @@ export class CheckboxChanger {
 
     })
     
+  }
+
+  changeInternalChecked(key) {
+
+    this.checkbox.addEventListener("click", () => {
+
+      this.key = key;
+
+      const currentCheckboxLabel = this.checkbox.parentElement.querySelector("label");
+
+      const currentCheckboxChecked = new TaskStorage(this.taskListId, this.taskUniqueId).changeInternalCheckboxState(this.key);
+
+      if (currentCheckboxChecked === true) {
+
+        currentCheckboxLabel.style.textDecoration = "line-through";
+
+      } else if (currentCheckboxChecked === false) {
+
+        currentCheckboxLabel.style.textDecoration = "none";;
+
+      };
+    })
+
+    
+
   }
 
 }
