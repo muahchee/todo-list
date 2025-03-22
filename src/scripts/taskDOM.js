@@ -1,3 +1,4 @@
+import { CheckboxChanger } from "./checkboxChanger.js";
 import { PriorityChanger } from "./priorityChanger.js";
 import { Title, DueDate, Description, Checkbox } from "./section.js";
 import { v4 as uuidv4 } from "uuid";
@@ -40,6 +41,7 @@ export class TaskDOM {
     this.mainCheckbox = document.createElement("input");
     this.mainCheckbox.setAttribute("type", "checkbox");
     this.mainCheckbox.setAttribute("id", this.taskUniqueId);
+    new CheckboxChanger(this.taskUniqueId, this.taskListId, this.mainCheckbox).changeMainChecked();
 
     this.mainLabel = document.createElement("label");
     this.mainLabel.setAttribute("for", this.taskUniqueId);

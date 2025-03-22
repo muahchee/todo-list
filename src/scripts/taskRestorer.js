@@ -22,6 +22,8 @@ export class TaskRestorer {
 
       const currentTaskDiv = document.querySelector(`#${taskUniqueId}`).parentElement.parentElement;
 
+      const currentTaskLabel = document.querySelector(`#${taskUniqueId}`).parentElement.querySelector("label");
+
       const taskListArr = JSON.parse(localStorage.getItem(this.taskListId));
 
       const currentTaskLS = taskListArr.filter(task => task["uniqueId"] === taskUniqueId)[0];
@@ -37,6 +39,14 @@ export class TaskRestorer {
         currentTaskDiv.style.boxShadow = "0px 0px 20px 5px var(--priority-shadow)"
 
         priorityBtn.textContent = "Unprioritise" 
+
+      }
+
+      //restore main checkbox state
+
+      if (currentTaskLS["mainChecked"] === true) {
+
+        currentTaskLabel.style.textDecoration = "line-through";
 
       }
 

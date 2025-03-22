@@ -19,6 +19,32 @@ export class TaskStorage {
 
   }
 
+  changeMainCheckboxState() {
+
+    const taskListArr = JSON.parse(localStorage.getItem(this.taskListId));
+
+    const currentTask = taskListArr.filter(task => task["uniqueId"] === this.uniqueId)[0];
+
+    const currentTaskIndex = taskListArr.indexOf(currentTask);
+
+    if (currentTask["mainChecked"] === false){
+
+      currentTask["mainChecked"] = true;
+
+    } else {
+
+      currentTask["mainChecked"] = false;
+
+    };
+    //replace task with updated one 
+    taskListArr.splice(currentTaskIndex, 1, currentTask);
+
+    localStorage.setItem(this.taskListId, JSON.stringify(taskListArr))
+
+    return currentTask["mainChecked"];
+
+  }
+
   changeStoredTaskPriority() {
 
     const taskListArr = JSON.parse(localStorage.getItem(this.taskListId));
