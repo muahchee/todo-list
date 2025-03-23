@@ -56,6 +56,7 @@ export class Description {
 
     let descriptionDOM = document.createElement("p");
     descriptionDOM.textContent = this.description;
+    descriptionDOM.setAttribute("class", "description");
 
     return descriptionDOM;
 

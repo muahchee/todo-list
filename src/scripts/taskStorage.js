@@ -113,4 +113,22 @@ export class TaskStorage {
 
   }
 
+  editTask(taskObject) {
+
+    this.taskObject = taskObject;
+
+    const taskListArr = JSON.parse(localStorage.getItem(this.taskListId));
+
+    const currentTask = taskListArr.filter(task => task["uniqueId"] === this.uniqueId)[0];
+
+    const currentTaskIndex = taskListArr.indexOf(currentTask);
+
+    //replace task with updated one 
+    taskListArr.splice(currentTaskIndex, 1, this.taskObject);
+
+    localStorage.setItem(this.taskListId, JSON.stringify(taskListArr))
+
+
+  }
+
 }

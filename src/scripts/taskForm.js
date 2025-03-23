@@ -1,8 +1,10 @@
 
 //responsibility - collect user INPUT for sections
 
+import { v4 as uuidv4 } from "uuid";
 import { dialogClose } from "./dialogState.js";
 import { TaskCreator } from "./taskCreator.js";
+import { TaskEditor } from "./taskEditor.js";
 
 //include inputs for each section (title, description etc)
 // also an "add task" button that invokes addtask() fo the current tasklist
@@ -72,18 +74,14 @@ export class TaskForm {
   }
 
   //add another checkbox field under first one
-  _addAnotherCheckbox(checkboxesSection, addCheckboxBtn) {
-
-    let checkboxCount = 1;
+  _addAnotherCheckbox(checkboxesSection, addCheckboxBtn, existingCheckboxId) {
 
       return function () {
 
-      checkboxCount++;
-
-      console.log(this.checkboxCount)
+      let checkboxId = existingCheckboxId || uuidv4();
 
       let newCheckboxInput = document.createElement("input");
-      newCheckboxInput.setAttribute("name", `checkbox${checkboxCount}`);
+      newCheckboxInput.setAttribute("name", `checkbox${checkboxId}`);
 
       checkboxesSection.insertBefore(newCheckboxInput, addCheckboxBtn);}
 
@@ -176,12 +174,14 @@ export class TaskForm {
         }
       }
 
-      console.log(currentTaskLS)
-
     })
 
 
     this.form.addEventListener("submit", () => {
+
+      const formData = new FormData(this.form)
+
+      new TaskEditor(taskUniqueId, this.taskListId, formData).editTask();
       
       //reset form
       while(this.checkboxesSection.children.length > 2) {

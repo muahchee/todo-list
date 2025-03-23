@@ -26,7 +26,6 @@ export class TaskCreator{
     //add "checked" property for main checkbox
     this.taskObject["mainChecked"] = false;
 
-    console.log(this.taskObject)
   }
 
   initialTask() {
