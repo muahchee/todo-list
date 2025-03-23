@@ -1,5 +1,6 @@
 
 //Local Storage will have the tasklistId as the key, and an array of objects(taskObjects) and the value
+//responsibility - manipulating the Local Storage
 
 export class TaskStorage {
 

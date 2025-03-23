@@ -1,11 +1,12 @@
 
 //responsibility - collect user INPUT for sections
 
+import { dialogClose } from "./dialogState.js";
 import { TaskCreator } from "./taskCreator.js";
 
 //include inputs for each section (title, description etc)
 // also an "add task" button that invokes addtask() fo the current tasklist
-export class newTaskForm {
+export class TaskForm {
   constructor(taskListId){
 
     this.taskListId = taskListId;
@@ -61,6 +62,13 @@ export class newTaskForm {
     this.addTaskBtn.setAttribute("class", "add-task")
     this.addTaskBtn.setAttribute("type", "submit")
     this.addTaskBtn.textContent = "Add Task"
+
+    this.cancelBtn = document.createElement("button");
+    this.cancelBtn.setAttribute("class", "cancel-btn")
+    this.cancelBtn.setAttribute("type", "button")
+    this.cancelBtn.textContent = "Cancel";
+    dialogClose(this.cancelBtn, this.dialog)
+
   }
 
   //add another checkbox field under first one
@@ -81,10 +89,7 @@ export class newTaskForm {
 
   }
 
-  createNewTaskForm() {
-
-    //append child
-
+  _appendEverything() {
     this.fullWrapper.appendChild(this.dialog);
 
     this.dialog.appendChild(this.form);
@@ -93,7 +98,8 @@ export class newTaskForm {
     this.form.appendChild(this.dueDate);
     this.form.appendChild(this.description);
     this.form.appendChild(this.checkboxesSection);
-    this.form.appendChild(this.addTaskBtn)
+    this.form.appendChild(this.addTaskBtn);
+    this.form.appendChild(this.cancelBtn);
 
     this.title.appendChild(this.titleLabel);
     this.title.appendChild(this.titleInput);
@@ -108,6 +114,13 @@ export class newTaskForm {
     this.checkboxesSection.appendChild(this.checkboxesInput)
     this.checkboxesSection.appendChild(this.addCheckboxBtn);
 
+  }
+
+  createNewTaskForm() {
+
+    //append child
+    this._appendEverything();
+    
     //event listener
 
     this.addCheckboxBtn.addEventListener("click", this._addAnotherCheckbox(this.checkboxesSection, this.addCheckboxBtn))
@@ -129,5 +142,56 @@ export class newTaskForm {
 
     return this.dialog
     
+  }
+
+  createEditForm(taskUniqueId, button) {
+
+    this._appendEverything()
+
+    this.addCheckboxBtn.addEventListener("click", this._addAnotherCheckbox(this.checkboxesSection, this.addCheckboxBtn))
+
+    button.addEventListener("click", () => {
+
+      //need to populate form fields with existing values, add "value" attribute to each field
+      //get existing taskObject from LS
+      const taskListArr = JSON.parse(localStorage.getItem(this.taskListId));
+
+      const currentTaskLS = taskListArr.filter(task => task["uniqueId"] === taskUniqueId)[0];
+
+      this.titleInput.value = currentTaskLS.title || "";
+      this.dueDateInput.value = currentTaskLS.dueDate || "";
+      this.descriptionInput.value = currentTaskLS.description || "";
+      //for the first checkbox
+      this.checkboxesInput.value = currentTaskLS.checkbox1;
+
+      //subsequent checkboxes
+      for (let key in currentTaskLS) {
+        if (key.match(/^checkbox/) && key !== "checkbox1"){
+
+          let newCheckboxInput = document.createElement("input");
+          newCheckboxInput.setAttribute("name", key);
+          newCheckboxInput.value = currentTaskLS[key],
+
+          this.checkboxesSection.insertBefore(newCheckboxInput, this.addCheckboxBtn);
+        }
+      }
+
+      console.log(currentTaskLS)
+
+    })
+
+
+    this.form.addEventListener("submit", () => {
+      
+      //reset form
+      while(this.checkboxesSection.children.length > 2) {
+        this.checkboxesSection.removeChild(this.checkboxesSection.lastChild);
+      };
+      this.checkboxesSection.appendChild(this.addCheckboxBtn);
+      this.form.reset();
+
+    })
+
+    return this.dialog
   }
 }

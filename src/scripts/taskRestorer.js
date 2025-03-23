@@ -61,7 +61,6 @@ export class TaskRestorer {
           const currentInternalId = `#${CSS.escape(currentTaskLS[key].replace(/\s/g, "-"))}`
           const currentInternalInput = currentTaskDiv.querySelector(currentInternalId);
           const currentInternalLabel = currentTaskDiv.querySelector(currentInternalId).parentElement.querySelector("label");
-          console.log(currentInternalInput)
 
           if (currentTaskLS[`checked${key}`] === true) {
 
@@ -69,15 +68,8 @@ export class TaskRestorer {
             currentInternalInput.setAttribute("checked", true)
             
           }
-
         }
-
-
       }
-
-
     })
-
   }
-
 }

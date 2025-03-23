@@ -2,6 +2,9 @@ import { CheckboxChanger } from "./checkboxChanger.js";
 import { PriorityChanger } from "./priorityChanger.js";
 import { Title, DueDate, Description, Checkbox } from "./section.js";
 import { v4 as uuidv4 } from "uuid";
+import { TaskEditor } from "./taskEditor.js";
+import { dialogOpen } from "./dialogState.js";
+import { TaskForm } from "./taskForm.js";
 
 export class TaskDOM {
 
@@ -106,7 +109,8 @@ export class TaskDOM {
 
     this.editButton = document.createElement("button");
     this.editButton.setAttribute("class", "edit-btn");
-    this.editButton.textContent = "Edit"
+    this.editButton.textContent = "Edit";
+    dialogOpen(this.editButton, new TaskForm(this.taskListId).createEditForm(this.taskUniqueId, this.editButton));
     
     this.priorityButton = document.createElement("button");
     this.priorityButton.textContent = "Prioritise";
