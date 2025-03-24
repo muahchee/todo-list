@@ -131,4 +131,19 @@ export class TaskStorage {
 
   }
 
+  deleteStoredTask() {
+
+    const taskListArr = JSON.parse(localStorage.getItem(this.taskListId));
+
+    const currentTask = taskListArr.filter(task => task["uniqueId"] === this.uniqueId)[0];
+
+    const currentTaskIndex = taskListArr.indexOf(currentTask);
+
+    //remove task at index
+    taskListArr.splice(currentTaskIndex, 1);
+
+    localStorage.setItem(this.taskListId, JSON.stringify(taskListArr))
+
+  }
+
 }

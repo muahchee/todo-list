@@ -4,6 +4,7 @@ import { Title, DueDate, Description, Checkbox } from "./section.js";
 import { v4 as uuidv4 } from "uuid";
 import { dialogOpen } from "./dialogState.js";
 import { TaskForm } from "./taskForm.js";
+import { TaskDeleter } from "./taskDeleter.js";
 
 export class TaskDOM {
 
@@ -120,6 +121,7 @@ export class TaskDOM {
     this.deleteButton = document.createElement("button");
     this.deleteButton.setAttribute("class", "delete-btn");
     this.deleteButton.textContent = "Delete"
+    new TaskDeleter(this.taskUniqueId, this.taskListId, this.deleteButton).deleteTask();
 
     this.optionButtonsContainer.appendChild(this.editButton);
     this.optionButtonsContainer.appendChild(this.priorityButton);
