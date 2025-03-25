@@ -8,9 +8,9 @@ import { TaskRestorer } from "./taskRestorer.js";
 
 export class TaskScreen {
 
-  constructor(taskListName) {
+  constructor(taskListId, taskListName) {
 
-    this.taskListId = Symbol(taskListName).toString();
+    this.taskListId = taskListId;
 
     this.sideBar = document.querySelector(".side-bar");
 
@@ -26,14 +26,20 @@ export class TaskScreen {
     this.backToMainButton = document.createElement("button");
     this.backToMainButton.setAttribute("class", "back");
     this.backToMainButton.textContent = "Back to Main";
+
+    this.mainContainer = document.querySelector(".main-container")
     
   }
 
   showTaskScreen() {
 
-    //clear sidebar
+    //clear sidebar & main container
     while(this.sideBar.firstChild){
       this.sideBar.removeChild(this.sideBar.lastChild);
+    };
+
+    while(this.mainContainer.firstChild){
+      this.mainContainer.removeChild(this.mainContainer.lastChild);
     }
 
     dialogOpen(this.newTaskBtn, new TaskForm(this.taskListId).createNewTaskForm())

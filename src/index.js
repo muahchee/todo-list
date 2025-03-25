@@ -1,10 +1,12 @@
 import "./styles.css";
 
-import { TaskScreen } from "./scripts/taskScreen.js";
+import { TaskListScreen } from "./scripts/taskListScreen.js";
 
 //---------------------------------//
 
 
 //create screen for single task view
-new TaskScreen("Task List").showTaskScreen()
+// new TaskScreen("Task List").showTaskScreen()
+
+new TaskListScreen("First Task List!").showTaskListScreen();
 

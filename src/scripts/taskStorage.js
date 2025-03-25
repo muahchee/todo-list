@@ -12,6 +12,7 @@ export class TaskStorage {
 
   }
 
+
   clearTaskList() {
 
     localStorage.setItem(this.taskListId, JSON.stringify([]))
