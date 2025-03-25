@@ -22,15 +22,18 @@ export class TaskListCreator {
     taskListDiv.appendChild(taskListH2);
     this.mainContainer.appendChild(taskListDiv);
 
-    console.log(this.taskListId)
-
     taskListDiv.addEventListener("click", () => {
       new TaskScreen(this.taskListId, this.taskListName).showTaskScreen()
     })
 
-    new TaskStorage(this.taskListId).clearTaskList();
-
+    if (localStorage.getItem(this.taskListId) === false) {
+      new TaskStorage(this.taskListId).clearTaskList();
+    }
+    
     return taskListDiv
 
   }
+
+  
+
 }

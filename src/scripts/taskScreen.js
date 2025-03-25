@@ -5,6 +5,7 @@ import { InitialTask } from "./initialTask.js";
 import { TaskListResetter } from "./reset.js";
 import { TaskForm } from "./taskForm.js";
 import { TaskRestorer } from "./taskRestorer.js";
+import { TaskListScreen } from "./taskListScreen.js";
 
 export class TaskScreen {
 
@@ -46,13 +47,20 @@ export class TaskScreen {
 
     new TaskListResetter(this.taskListId, this.resetCurrentListBtn).addResetListener();
 
+    this.backToMainButton.addEventListener("click", () => {
+      new TaskListScreen().showTaskListScreen();
+    })
+
     this.sideBar.appendChild(this.h2);
     this.sideBar.appendChild(this.newTaskBtn);
     this.sideBar.appendChild(this.resetCurrentListBtn);
     this.sideBar.appendChild(this.backToMainButton);
 
     //restores stored tasks
-    new TaskRestorer(this.taskListId).restoreTasks();
+    if (localStorage.getItem(this.taskListId) !== null) {
+      new TaskRestorer(this.taskListId).restoreTasks();
+    }
+    
 
     //create initial Task
     const mainContainer = document.querySelector(".main-container");
