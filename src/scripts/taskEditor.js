@@ -39,18 +39,47 @@ export class TaskEditor {
 
     const currentTaskDiv = document.querySelector(`#${this.taskUniqueId}`).parentElement.parentElement;
 
-    const currentTitle = currentTaskDiv.querySelector("h2");
+    const mainLabel = currentTaskDiv.querySelector(`label[for="${this.taskUniqueId}"]`)
+
+    //title
+    let currentTitle = currentTaskDiv.querySelector("h2");
+
+    if (currentTitle === null) {
+      currentTitle = document.createElement("h2");
+      currentTitle.textContent = ""
+      mainLabel.prepend(currentTitle)
+    }
+
     currentTitle.textContent = currentTaskObject.title;
 
-    const currentDueDate = currentTaskDiv.querySelector(".due-date");
+    //due date
+    let currentDueDate = currentTaskDiv.querySelector(".due-date");
+
+    if (currentDueDate === null) {
+      currentDueDate = document.createElement("p");
+      currentDueDate.textContent = ""
+      mainLabel.appendChild(currentDueDate)
+    }
+
     let duration = formatDistance(new Date(currentTaskObject.dueDate), new Date(), {
       addSuffix: true
     })
-    currentDueDate.textContent = "Due Date: " + currentTaskObject.dueDate + ` (${duration})`;
 
-    const currentDescription = currentTaskDiv.querySelector(".description");
+    currentDueDate.textContent = "Due Date: " + currentTaskObject.dueDate + ` (${duration})`;
+    
+    //description
+    const details = currentTaskDiv.querySelector("details");
+    let currentDescription = currentTaskDiv.querySelector(".description");
+
+    if (currentDescription === null) {
+      currentDescription = document.createElement("p");
+      currentDescription.textContent = ""
+      details.prepend(currentDescription)
+    }
+
     currentDescription.textContent = currentTaskObject.description;
 
+    //checkbox
     const optionButtonsContainer = currentTaskDiv.querySelector(".option-buttons");
 
     for (let key in currentTaskObject) {
